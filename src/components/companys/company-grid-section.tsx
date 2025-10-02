@@ -12,9 +12,7 @@ export function CompanyGridSection() {
 
   // Carregar dados na inicialização
   useEffect(() => {
-    if (!companies) {
       listCompanies(1, 4); // Carregar apenas 4 empresas do backend
-    }
   }, []);
 
   useEffect(() => {
