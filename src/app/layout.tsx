@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "O Portal on-line da cidade da Josefense - Portal Josefense",
+  title: "O Portal on-line da cidade de São José - Portal Josefense",
   description: "Informações de contato dos comércios e notícias de Josefense",
 };
 
