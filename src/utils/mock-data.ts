@@ -1,6 +1,6 @@
 export const districtsPalhoca = [
   "Alto Aririú",
-  "Área Rural de Palhoça",
+  "Área Rural de São José",
   "Aririú",
   "Aririú da Formiga",
   "Balneário Ponta do Papagaio",
@@ -20,7 +20,7 @@ export const districtsPalhoca = [
   "Madri",
   "Mar Azul",
   "Morretes",
-  "Nova Palhoça",
+  "Nova São José",
   "Pagani",
   "Pachecos",
   "Passa Vinte",

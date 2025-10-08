@@ -191,7 +191,7 @@ export default function PostGridWwithColumnistSection() {
                   alt={
                     post && post.title && post.title
                       ? post.title
-                      : "Imagem do portal palhoça"
+                      : "Imagem do portal São José"
                   }
                   fill
                   unoptimized

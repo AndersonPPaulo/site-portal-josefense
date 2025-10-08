@@ -226,7 +226,7 @@ export function CompanyGridSectionWithSkeleton() {
 
       <div className="flex flex-col md:flex-row items-start gap-3 md:items-center justify-between">
         <h2 className="text-2xl font-semibold text-red-500 py-6">
-          Comércios que são destaques em Palhoça!
+          Comércios que são destaques em São José!
         </h2>
 
         <Link
