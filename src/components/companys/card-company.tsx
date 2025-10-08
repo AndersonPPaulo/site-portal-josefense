@@ -6,7 +6,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone } from "lucide-react";
 import { useCompanyAnalytics } from "@/provider/analytics/company";
-import default_image from "@/assets/default image.webp";
+import default_image from "@/assets/no-img.png";
 
 // ==================== INTERFACES ====================
 interface ICompanyImage {

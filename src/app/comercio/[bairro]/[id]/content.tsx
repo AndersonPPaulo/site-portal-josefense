@@ -11,7 +11,7 @@ import { Footer } from "@/components/footer";
 import Link from "next/link";
 import { usePublicCompany } from "@/provider/company";
 import { CompanyAnalyticsContext } from "@/provider/analytics/company";
-import Default_img from "../../../../assets/no-img.png";
+import DefaultImage from "../../../../assets/no-img.png";
 
 // Função para extrair coordenadas do link do Google Maps
 function extractCoordinatesFromMapsLink(
@@ -77,7 +77,6 @@ export default function ComercioDetails() {
 
   const [company, setCompany] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeImage, setActiveImage] = useState(0);
   const [hasTrackedInitialView, setHasTrackedInitialView] = useState(false);
 
   useEffect(() => {
@@ -103,7 +102,7 @@ export default function ComercioDetails() {
             name: apiCompany.name,
             category: apiCompany.company_category?.[0]?.name || "Comércio",
             categories: apiCompany.company_category || [],
-            image: apiCompany.company_image?.url || Default_img,
+            image: apiCompany.company_image?.url || DefaultImage,
             phone: apiCompany.phone || "Não informado",
             description: apiCompany.description || "Descrição não disponível",
             hours: apiCompany.openingHours || "Horário não informado",
@@ -305,18 +304,16 @@ export default function ComercioDetails() {
         <div className="rounded-lg mb-8">
           <div className="flex flex-col lg:flex-row gap-6 items-start">
             {/* Coluna da esquerda com imagem e indicadores */}
-            <div className="relative w-full lg:w-5/12">
-              {/* Imagem principal */}
-              <div className="relative w-[408] h-[355px] rounded-lg overflow-hidden">
-                <Image
-                  src={company.image}
-                  alt={company.name}
-                  fill
-                  className="object-cover"
-                  priority
-                  unoptimized
-                />
-              </div>
+            {/* Imagem principal */}
+            <div className="relative w-[335px] lg:w-[480px] lg:min-w-[480px] h-[355px] rounded-lg overflow-hidden">
+              <Image
+                src={company.image}
+                alt={company.name}
+                fill
+                className="object-cover"
+                priority
+                unoptimized
+              />
             </div>
 
             {/* Detalhes do comércio */}
