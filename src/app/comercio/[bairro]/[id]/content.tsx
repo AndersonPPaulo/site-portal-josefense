@@ -77,6 +77,7 @@ export default function ComercioDetails() {
             category: apiCompany.company_category?.[0]?.name || "Comércio",
             categories: apiCompany.company_category || [],
             image: apiCompany.company_image?.url || DefaultImage,
+            image: apiCompany.company_image?.url || DefaultImage,
             phone: apiCompany.phone || "Não informado",
             description: apiCompany.description || "Descrição não disponível",
             hours: apiCompany.openingHours || "Horário não informado",
@@ -275,6 +276,16 @@ export default function ComercioDetails() {
         <div className="rounded-lg mb-8">
           <div className="flex flex-col lg:flex-row gap-6 items-start">
             {/* Coluna da esquerda com imagem e indicadores */}
+            {/* Imagem principal */}
+            <div className="relative w-[335px] lg:w-[480px] lg:min-w-[480px] h-[355px] rounded-lg overflow-hidden">
+              <Image
+                src={company.image}
+                alt={company.name}
+                fill
+                className="object-cover"
+                priority
+                unoptimized
+              />
             {/* Imagem principal */}
             <div className="relative w-[335px] lg:w-[480px] lg:min-w-[480px] h-[355px] rounded-lg overflow-hidden">
               <Image
