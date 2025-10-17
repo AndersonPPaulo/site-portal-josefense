@@ -5,13 +5,13 @@
 @theme {
   --spacing: 4px;
   --font-body: Inter, sans-serif;
-  --color-primary: #00a550;
-  --color-secondary: #d6ffea;
-  --color-dark:#016632;
+  --color-primary: #007fc2;
+  --color-secondary: #e5f2f9;
+  --color-dark: #016632;
   --color-text: #cdcdcd;
   --color-red: #ee383f;
-  --color-red-primary: #A3151A;
-  --color-red-light: #FCD9DB;
+  --color-red-primary: #a3151a;
+  --color-red-light: #fcd9db;
 }
 
 :root {

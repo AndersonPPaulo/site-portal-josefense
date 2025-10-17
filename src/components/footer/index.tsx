@@ -20,13 +20,13 @@ export function Footer() {
             <div className="flex gap-4 mt-4">
               <Link
                 href="#"
-                className="w-8 h-8 p-2 bg-green-500 rounded-full flex items-center justify-center"
+                className="w-8 h-8 p-2 bg-primary rounded-full flex items-center justify-center"
               >
                 <Facebook color="#FFF" />
               </Link>
               <Link
                 href="#"
-                className="w-8 h-8 p-2 bg-green-500 rounded-full flex items-center justify-center"
+                className="w-8 h-8 p-2 bg-primary rounded-full flex items-center justify-center"
               >
                 <Instagram color="#FFF" />
               </Link>
