@@ -31,10 +31,8 @@ export default function ListArticlesByCategory() {
     ArticleAnalyticsContext
   );
 
-  // Estados para controle de analytics
   const [hasInitialView, setHasInitialView] = useState(false);
 
-  // Refs para Intersection Observer
   const listSectionRef = useRef<HTMLElement>(null);
   const articlesRef = useRef<Record<string, HTMLDivElement | null>>({});
 
