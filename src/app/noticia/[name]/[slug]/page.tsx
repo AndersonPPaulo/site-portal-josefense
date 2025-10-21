@@ -13,7 +13,6 @@ export async function generateMetadata({
 }: {
   params: Promise<{ name: string; slug: string }>;
 }): Promise<Metadata> {
-  // Agora você precisa aguardar os params
   const { slug } = await params;
 
   const article: Article = await getArticleBySlug(slug);
