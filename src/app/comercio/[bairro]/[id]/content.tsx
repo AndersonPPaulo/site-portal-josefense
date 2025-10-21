@@ -24,7 +24,6 @@ function generateMapsEmbedUrl(
   return `https://maps.google.com/maps?width=100%25&height=300&hl=pt&q=${lat},${lng}+(${encodedName})&t=&z=16&ie=UTF8&iwloc=B&output=embed`;
 }
 
-// Função para normalizar texto para comparação de slugs
 function normalizeText(text: string): string {
   return text
     .toString()
