@@ -5,9 +5,9 @@ import { getCompanyByIdServer } from "./get-company";
 const capitalize = (text?: string) => {
   if (!text) return "";
   return text
-    .split("-") // divide por hífen
+    .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(" "); // junta com espaço
+    .join(" ");
 };
 
 export async function generateMetadata({
@@ -16,7 +16,6 @@ export async function generateMetadata({
   params: any;
 }): Promise<Metadata> {
   const { id, bairro } = params;
-  console.log("bairro", bairro);
 
   const comercio = await getCompanyByIdServer(id);
 
@@ -29,7 +28,7 @@ export async function generateMetadata({
 
   const imageUrl =
     comercio.company_image?.url ||
-    "https://portaljosefense.com.br/images/default-og-image.jpg";
+    "https://portaljosefense.com.br/images/no-img.png";
 
   return {
     title: `${comercio.name} - ${capitalize(bairro)} - ${capitalize(
@@ -43,7 +42,8 @@ export async function generateMetadata({
         bairro
       )} - ${capitalize(comercio.city)} | Portal Josefense`,
       description:
-        comercio.description || "Descubra mais sobre este comércio em São José.",
+        comercio.description ||
+        "Descubra mais sobre este comércio em São José.",
       url: `https://portaljosefense.com.br/comercio/${bairro}/${id}`,
       siteName: "Portal Josefense",
       images: [

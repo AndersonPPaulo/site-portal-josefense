@@ -3,7 +3,7 @@ import { Footer } from "@/components/footer";
 import Header from "@/components/header";
 import PostPage from "@/components/posts/post-page";
 import { getArticleBySlug } from "@/lib/getArticleBySlug";
-import default_image from "@/assets/default_image.png";
+import default_image from "@/assets/no-img.png";
 
 import type { Metadata } from "next";
 import { Article } from "@/provider/article";
@@ -13,7 +13,6 @@ export async function generateMetadata({
 }: {
   params: Promise<{ name: string; slug: string }>;
 }): Promise<Metadata> {
-  // Agora você precisa aguardar os params
   const { slug } = await params;
 
   const article: Article = await getArticleBySlug(slug);
