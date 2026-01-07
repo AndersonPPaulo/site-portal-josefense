@@ -10,6 +10,7 @@ import { ArticleAnalyticsContext } from "@/provider/analytics/article";
 import { formatDate } from "@/utils/formatDate";
 import normalizeTextToslug from "@/utils/normalize-text-to-slug";
 import default_image from "@/assets/no-img.png";
+import ColumnistCardWidget from "@/components/columnists/columnist-card-widget";
 
 function ColumnistPostItem({
   post,
@@ -127,7 +128,7 @@ export default function PostGridWwithColumnistSection() {
   }, []);
 
   const gridPosts =
-    articlesByPortalHighlightPositionFour?.data.slice(0, 4) || [];
+    articlesByPortalHighlightPositionFour?.data.slice(0, 3) || [];
 
   // Analytics: Função para registrar clique no post do grid
   const handleGridPostClick = (post: any, index: number) => {
@@ -169,6 +170,8 @@ export default function PostGridWwithColumnistSection() {
             gridSize={gridPosts.length}
           />
         ))}
+
+        <ColumnistCardWidget noSlug={noSlug} />
       </div>
     </section>
   );
