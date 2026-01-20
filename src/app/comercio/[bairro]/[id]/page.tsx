@@ -13,9 +13,9 @@ const capitalize = (text?: string) => {
 export async function generateMetadata({
   params,
 }: {
-  params: any;
+  params: Promise<any>;
 }): Promise<Metadata> {
-  const { id, bairro } = params;
+  const { id, bairro } = await params;
 
   const comercio = await getCompanyByIdServer(id);
 
@@ -32,14 +32,14 @@ export async function generateMetadata({
 
   return {
     title: `${comercio.name} - ${capitalize(bairro)} - ${capitalize(
-      comercio.city
+      comercio.city,
     )} | Portal Josefense`,
     description:
       comercio.description ||
       "Informações detalhadas sobre este comércio em São José você vê aqui!.",
     openGraph: {
       title: `${capitalize(comercio.name)}, ${capitalize(
-        bairro
+        bairro,
       )} - ${capitalize(comercio.city)} | Portal Josefense`,
       description:
         comercio.description ||
