@@ -29,22 +29,23 @@ function SidePostItem({
     highlightPosition: 2,
   };
 
-  const { ref: sidePostRef, registerInitialView } = useArticleViewTracking(
-    post.id,
-    trackingData,
-    TrackArticleView
-  );
+  // Track article view desativado
+  // const { ref: sidePostRef, registerInitialView } = useArticleViewTracking(
+  //   post.id,
+  //   trackingData,
+  //   TrackArticleView
+  // );
 
-  useEffect(() => {
-    registerInitialView();
-  }, [registerInitialView]);
+  // useEffect(() => {
+  //   registerInitialView();
+  // }, [registerInitialView]);
 
   return (
     <Link
       href={`/noticia/${normalizeTextToslug(post.category.name)}/${post.slug}`}
       onClick={() => handleSidePostClick(post, idx)}
     >
-      <div ref={sidePostRef} className="flex gap-3 rounded-xl p-2 transition">
+      <div className="flex gap-3 rounded-xl p-2 transition">
         <div className="relative min-w-[151px] h-[110px] rounded-sm overflow-hidden">
           <Image
             src={
@@ -88,7 +89,7 @@ export default function HeroSection() {
   } = useContext(ArticleContext);
 
   const { TrackArticleClick, TrackArticleView } = useContext(
-    ArticleAnalyticsContext
+    ArticleAnalyticsContext,
   );
 
   useEffect(() => {
@@ -123,18 +124,19 @@ export default function HeroSection() {
       }
     : {};
 
-  const { ref: mainPostRef, registerInitialView: registerMainPostView } =
-    useArticleViewTracking(
-      mainPost?.id || "",
-      mainPostTrackingData,
-      TrackArticleView
-    );
+  // Track article view desativado
+  // const { ref: mainPostRef, registerInitialView: registerMainPostView } =
+  //   useArticleViewTracking(
+  //     mainPost?.id || "",
+  //     mainPostTrackingData,
+  //     TrackArticleView
+  //   );
 
-  useEffect(() => {
-    if (mainPost) {
-      registerMainPostView();
-    }
-  }, [mainPost, registerMainPostView]);
+  // useEffect(() => {
+  //   if (mainPost) {
+  //     registerMainPostView();
+  //   }
+  // }, [mainPost, registerMainPostView]);
 
   // Analytics: Função para registrar clique no artigo principal
   const handleMainPostClick = () => {
@@ -190,10 +192,7 @@ export default function HeroSection() {
           }`}
           onClick={handleMainPostClick}
         >
-          <div
-            ref={mainPostRef}
-            className="flex flex-col lg:flex-row gap-6 rounded-xl"
-          >
+          <div className="flex flex-col lg:flex-row gap-6 rounded-xl">
             <div className="relative md:min-w-[490px] max-w-[490px] min-h-[406px] max-h-[406px] rounded-xl overflow-hidden">
               <Image
                 src={mainPost?.thumbnail?.url ?? default_image}
