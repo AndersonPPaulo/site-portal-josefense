@@ -30,25 +30,23 @@ function GridPostItem({
     gridSize: gridSize,
   };
 
-  const { ref: gridPostRef, registerInitialView } = useArticleViewTracking(
-    post.id,
-    trackingData,
-    TrackArticleView
-  );
+  // Track article view desativado
+  // const { ref: gridPostRef, registerInitialView } = useArticleViewTracking(
+  //   post.id,
+  //   trackingData,
+  //   TrackArticleView,
+  // );
 
-  useEffect(() => {
-    registerInitialView();
-  }, [registerInitialView]);
+  // useEffect(() => {
+  //   registerInitialView();
+  // }, [registerInitialView]);
 
   return (
     <Link
       href={`/noticia/${normalizeTextToslug(post.category.name)}/${post.slug}`}
       onClick={() => handleGridPostClick(post, index)}
     >
-      <div
-        ref={gridPostRef}
-        className="flex flex-col rounded-xl transition max-w-[405px]  hover:transform hover:scale-105"
-      >
+      <div className="flex flex-col rounded-xl transition max-w-[405px]  hover:transform hover:scale-105">
         <div className="relative min-w-[300px] md:w-[405px] h-[310px] rounded-md overflow-hidden">
           <Image
             src={
@@ -96,7 +94,7 @@ export default function PostGridSection() {
   } = useContext(ArticleContext);
 
   const { TrackArticleClick, TrackArticleView } = useContext(
-    ArticleAnalyticsContext
+    ArticleAnalyticsContext,
   );
 
   useEffect(() => {
