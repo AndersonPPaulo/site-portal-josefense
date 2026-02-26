@@ -127,7 +127,7 @@ export const CardCompany = memo(function CardCompany({
   onAnalyticsEvent,
 }: ICardCompanyProps) {
   const company_category_response = company.company_category?.map(
-    (cat) => cat.name
+    (cat) => cat.name,
   );
 
   const router = useRouter();
@@ -136,11 +136,11 @@ export const CardCompany = memo(function CardCompany({
   // Hook de analytics com fallback
   const analytics = useCompanyAnalytics();
   const TrackCompanyClick = analytics?.TrackCompanyClick;
-  const TrackCompanyView = analytics?.TrackCompanyView;
+  // const TrackCompanyView = analytics?.TrackCompanyView;
 
-  const cardRef = useRef<HTMLElement>(null);
-  const [hasTrackedView, setHasTrackedView] = useState(false);
-  const hasLeftRef = useRef(false);
+  // const cardRef = useRef<HTMLElement>(null);
+  // const [hasTrackedView, setHasTrackedView] = useState(false);
+  // const hasLeftRef = useRef(false);
 
   // Dados processados e memoizados
   const processedData = useMemo(() => {
@@ -167,70 +167,70 @@ export const CardCompany = memo(function CardCompany({
     };
   }, [company]);
 
-  useEffect(() => {
-    const element = cardRef.current;
-    if (!element || !TrackCompanyView || !processedData.companyId) return;
+  // useEffect(() => {
+  //   const element = cardRef.current;
+  //   if (!element || !TrackCompanyView || !processedData.companyId) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (!hasTrackedView) {
-              const viewData = {
-                page: pathname,
-                section,
-                position: "company-card",
-                companyName: company.name,
-                primaryCategory: processedData.primaryCategory,
-                allCategories: processedData.categories,
-                hasMultipleCategories: processedData.hasMultipleCategories,
-                gridIndex,
-                address: company.address,
-                viewType: "initial",
-                timestamp: new Date().toISOString(),
-                isHighlight: company.highlight,
-              };
-              TrackCompanyView(processedData.companyId, viewData);
-              setHasTrackedView(true);
-            } else if (hasLeftRef.current) {
-              const viewData = {
-                page: pathname,
-                section,
-                position: "company-card",
-                companyName: company.name,
-                primaryCategory: processedData.primaryCategory,
-                viewType: "reappear",
-                timestamp: new Date().toISOString(),
-              };
-              TrackCompanyView(processedData.companyId, viewData);
-              hasLeftRef.current = false;
-            }
-          } else {
-            if (hasTrackedView) {
-              hasLeftRef.current = true;
-            }
-          }
-        });
-      },
-      { threshold: 0.5, rootMargin: "0px" }
-    );
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => {
+  //         if (entry.isIntersecting) {
+  //           if (!hasTrackedView) {
+  //             const viewData = {
+  //               page: pathname,
+  //               section,
+  //               position: "company-card",
+  //               companyName: company.name,
+  //               primaryCategory: processedData.primaryCategory,
+  //               allCategories: processedData.categories,
+  //               hasMultipleCategories: processedData.hasMultipleCategories,
+  //               gridIndex,
+  //               address: company.address,
+  //               viewType: "initial",
+  //               timestamp: new Date().toISOString(),
+  //               isHighlight: company.highlight,
+  //             };
+  //             TrackCompanyView(processedData.companyId, viewData);
+  //             setHasTrackedView(true);
+  //           } else if (hasLeftRef.current) {
+  //             const viewData = {
+  //               page: pathname,
+  //               section,
+  //               position: "company-card",
+  //               companyName: company.name,
+  //               primaryCategory: processedData.primaryCategory,
+  //               viewType: "reappear",
+  //               timestamp: new Date().toISOString(),
+  //             };
+  //             TrackCompanyView(processedData.companyId, viewData);
+  //             hasLeftRef.current = false;
+  //           }
+  //         } else {
+  //           if (hasTrackedView) {
+  //             hasLeftRef.current = true;
+  //           }
+  //         }
+  //       });
+  //     },
+  //     { threshold: 0.5, rootMargin: "0px" }
+  //   );
 
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, [
-    hasTrackedView,
-    TrackCompanyView,
-    processedData.companyId,
-    pathname,
-    section,
-    company.name,
-    processedData.primaryCategory,
-    processedData.categories,
-    processedData.hasMultipleCategories,
-    gridIndex,
-    company.address,
-    company.highlight,
-  ]);
+  //   observer.observe(element);
+  //   return () => observer.disconnect();
+  // }, [
+  //   hasTrackedView,
+  //   TrackCompanyView,
+  //   processedData.companyId,
+  //   pathname,
+  //   section,
+  //   company.name,
+  //   processedData.primaryCategory,
+  //   processedData.categories,
+  //   processedData.hasMultipleCategories,
+  //   gridIndex,
+  //   company.address,
+  //   company.highlight,
+  // ]);
 
   // Função para registrar analytics
   const trackAnalytics = useCallback(
@@ -267,7 +267,7 @@ export const CardCompany = memo(function CardCompany({
       processedData,
       TrackCompanyClick,
       onAnalyticsEvent,
-    ]
+    ],
   );
 
   // Handler para navegação com analytics
@@ -280,7 +280,7 @@ export const CardCompany = memo(function CardCompany({
         router.push(processedData.targetUrl);
       }, 50);
     },
-    [router, processedData.targetUrl, trackAnalytics]
+    [router, processedData.targetUrl, trackAnalytics],
   );
 
   // Renderização de categorias
@@ -332,7 +332,7 @@ export const CardCompany = memo(function CardCompany({
 
   return (
     <article
-      ref={cardRef}
+      // ref={cardRef}
       data-company-id={processedData.companyId}
       data-company-name={company.name}
       data-company-category={processedData.primaryCategory}
