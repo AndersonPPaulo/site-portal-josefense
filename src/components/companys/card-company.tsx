@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { memo, useCallback, useMemo, useEffect, useRef, useState } from "react";
-import Image, { StaticImageData } from "next/image";
+import { memo, useCallback, useMemo } from "react";
+import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone } from "lucide-react";
@@ -285,8 +286,7 @@ export const CardCompany = memo(function CardCompany({
 
   // Renderização de categorias
   const renderCategories = useMemo(() => {
-    const { categories, hasMultipleCategories, primaryCategory } =
-      processedData;
+    const { categories } = processedData;
     const maxVisible = variant === "detailed" ? 4 : 3;
     const visibleCategories = categories.slice(0, maxVisible);
     const remainingCount = categories.length - maxVisible;
