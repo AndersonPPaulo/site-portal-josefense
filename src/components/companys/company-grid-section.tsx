@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { CardCompany } from "./card-company";
 import { usePublicCompany } from "@/provider/company";
+import { useCompanyAnalytics } from "@/provider/analytics/company";
 
 interface ICompanyCategory {
   id: string;
@@ -125,6 +126,26 @@ export function CompanyGridSection() {
     isArticlePage,
   } = useCompanyData();
 
+  const { TrackCompanyPrint } = useCompanyAnalytics();
+  const pathname = usePathname();
+
+  // Rastrear quando os comércios aparecem na tela
+  useEffect(() => {
+    if (!loading && displayCompanies.length > 0 && TrackCompanyPrint) {
+      displayCompanies.forEach((company, index) => {
+        TrackCompanyPrint(company.id, {
+          page: pathname,
+          section: "featured-companies",
+          position: "company-grid",
+          companyName: company.name,
+          gridIndex: index,
+          totalCompanies: displayCompanies.length,
+          isHighlighted: company.highlight,
+        });
+      });
+    }
+  }, [displayCompanies, loading, pathname, TrackCompanyPrint]);
+
   // Estados de carregamento e erro
   if (loading && !highlightedCompanies) {
     return (
@@ -162,7 +183,7 @@ export function CompanyGridSection() {
 
       <div className="flex flex-col md:flex-row items-start gap-3 md:items-center justify-between">
         <h2 className="text-2xl font-semibold text-red-500 py-6">
-          Comércios que são destaques em São José!
+          Comércios que são destaques em Palhoça!
         </h2>
 
         <Link
@@ -202,6 +223,26 @@ export function CompanyGridSectionWithSkeleton() {
     highlightedCompanies,
   } = useCompanyData();
 
+  const { TrackCompanyPrint } = useCompanyAnalytics();
+  const pathname = usePathname();
+
+  // Rastrear quando os comércios aparecem na tela
+  useEffect(() => {
+    if (!loading && displayCompanies.length > 0 && TrackCompanyPrint) {
+      displayCompanies.forEach((company, index) => {
+        TrackCompanyPrint(company.id, {
+          page: pathname,
+          section: "featured-companies",
+          position: "company-grid-skeleton",
+          companyName: company.name,
+          gridIndex: index,
+          totalCompanies: displayCompanies.length,
+          isHighlighted: company.highlight,
+        });
+      });
+    }
+  }, [displayCompanies, loading, pathname, TrackCompanyPrint]);
+
   if (error) {
     return (
       <section className="w-full mt-32 py-12 max-w-[1272px] mx-auto px-4">
@@ -230,7 +271,7 @@ export function CompanyGridSectionWithSkeleton() {
 
       <div className="flex flex-col md:flex-row items-start gap-3 md:items-center justify-between">
         <h2 className="text-2xl font-semibold text-red-500 py-6">
-          Comércios que são destaques em São José!
+          Comércios que são destaques em Palhoça!
         </h2>
 
         <Link
