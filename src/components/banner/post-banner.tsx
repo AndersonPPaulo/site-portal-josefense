@@ -13,10 +13,10 @@ import { PublicCompanyContext } from "@/provider/company";
 const PostBanner = () => {
   const { ListBannersNews, bannersNews } = useContext(BannerContext);
   const { TrackBannerView, TrackBannerClick } = useContext(
-    BannerAnalyticsContext
+    BannerAnalyticsContext,
   );
 
-  const {highlightedCompanies} =useContext(PublicCompanyContext)
+  const { highlightedCompanies } = useContext(PublicCompanyContext);
 
   const [isVisible, setIsVisible] = useState(false);
   const [randomBanner, setRandomBanner] = useState<BannerItem | null>(null);
@@ -43,7 +43,7 @@ const PostBanner = () => {
   } = useBannerViewTracking(
     randomBanner?.id || "",
     trackingData,
-    TrackBannerView
+    TrackBannerView,
   );
 
   // Requisição dos banners quando o componente carrega
@@ -86,7 +86,7 @@ const PostBanner = () => {
   return (
     <div
       ref={bannerRef} // Ref do hook personalizado
-      className={`flex flex-col md:flex-row mx-auto px-0 md:px-8 py-3 items-center relative ${highlightedCompanies?.data.length === 0 ? "mt-40" : "mt-0"}`}
+      className={`flex flex-col md:flex-row mx-auto px-0 md:px-8 py-3 items-center relative ${highlightedCompanies?.data.length === 0 ? "mt-10" : "mt-0"}`}
     >
       <span className="block w-full min-w-[360px] md:w-18 md:min-w-0 text-[12px] text-gray-400 md:absolute md:left-[-30px] md:top-1/2 md:-translate-y-1/2 mb-1 md:mb-0 md:transform md:-rotate-90">
         PUBLICIDADE
@@ -104,7 +104,7 @@ const PostBanner = () => {
             width={730}
             height={250}
             alt={randomBanner.name}
-            priority 
+            priority
             unoptimized
             className="bg-cover rounded-lg min-h-[110px] lg:min-h-[240px] max-h-[110px] lg:max-h-[240px]"
           />
