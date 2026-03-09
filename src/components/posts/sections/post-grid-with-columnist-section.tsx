@@ -5,13 +5,14 @@ import Link from "next/link";
 import { useContext, useEffect } from "react";
 import { useParams, usePathname } from "next/navigation";
 import { ArticleContext } from "@/provider/article";
-import { useArticleViewTracking } from "@/hooks/useIntersectionObserverArticle";
 import { ArticleAnalyticsContext } from "@/provider/analytics/article";
 import { formatDate } from "@/utils/formatDate";
 import normalizeTextToslug from "@/utils/normalize-text-to-slug";
 import default_image from "@/assets/no-img.png";
+// import { useArticleViewTracking } from "@/hooks/useIntersectionObserverArticle";
 import ColumnistCardWidget from "@/components/columnists/columnist-card-widget";
 
+// Componente wrapper para columnist post com tracking de view
 function ColumnistPostItem({
   post,
   index,
@@ -21,24 +22,23 @@ function ColumnistPostItem({
   TrackArticleView,
   gridSize,
 }: any) {
-  const trackingData = {
-    page: pathname,
-    section: "post-grid-columnist",
-    position: "grid-item",
-    categoryName: post.category.name,
-    articleTitle: post.title,
-    gridIndex: index,
-    highlightPosition: 4,
-    gridSize: gridSize,
-    hasSlug: !noSlug,
-    layoutType: noSlug ? "with-columnist" : "category-focused",
-  };
+  // const trackingData = {
+  //   page: pathname,
+  //   section: "post-grid-columnist",
+  //   position: "grid-item",
+  //   categoryName: post.category.name,
+  //   articleTitle: post.title,
+  //   gridIndex: index,
+  //   highlightPosition: 4,
+  //   gridSize: gridSize,
+  //   hasSlug: !noSlug,
+  //   layoutType: noSlug ? "with-columnist" : "category-focused",
+  // };
 
-  // Track article view desativado
   // const { ref: columnistPostRef, registerInitialView } = useArticleViewTracking(
   //   post.id,
   //   trackingData,
-  //   TrackArticleView
+  //   TrackArticleView,
   // );
 
   // useEffect(() => {
@@ -47,6 +47,7 @@ function ColumnistPostItem({
 
   return (
     <Link
+      key={post.id}
       href={`/noticia/${normalizeTextToslug(post.category.name)}/${post.slug}`}
       onClick={() => handleGridPostClick(post, index)}
     >
@@ -73,7 +74,7 @@ function ColumnistPostItem({
             alt={
               post && post.title && post.title
                 ? post.title
-                : "Imagem do portal Josefense"
+                : "Imagem do portal florianopolis"
             }
             fill
             unoptimized
@@ -111,9 +112,7 @@ export default function PostGridWwithColumnistSection() {
     articlesByPortalHighlightPositionFour,
   } = useContext(ArticleContext);
 
-  const { TrackArticleClick, TrackArticleView } = useContext(
-    ArticleAnalyticsContext,
-  );
+  const { TrackArticleClick } = useContext(ArticleAnalyticsContext);
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -152,7 +151,7 @@ export default function PostGridWwithColumnistSection() {
   };
 
   return (
-    <section className="w-full sm:px-6 lg:px-10 mx-auto max-w-7xl">
+    <section className="w-full sm:py-0 sm:px-6 lg:px-10 mx-auto max-w-7xl">
       <div
         className={`flex flex-col ${
           noSlug ? "lg:flex-row" : "lg:flex-row"
@@ -166,7 +165,6 @@ export default function PostGridWwithColumnistSection() {
             pathname={pathname}
             noSlug={noSlug}
             handleGridPostClick={handleGridPostClick}
-            TrackArticleView={TrackArticleView}
             gridSize={gridPosts.length}
           />
         ))}
