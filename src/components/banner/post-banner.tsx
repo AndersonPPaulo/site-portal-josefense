@@ -14,11 +14,11 @@ import { PortalContext } from "@/provider/portal";
 const PostBanner = () => {
   const { ListBannersNews, bannersNews } = useContext(BannerContext);
   const { TrackBannerView, TrackBannerClick } = useContext(
-    BannerAnalyticsContext
+    BannerAnalyticsContext,
   );
   const { SelfPortalByReferer, portal } = useContext(PortalContext);
 
-  const {highlightedCompanies} =useContext(PublicCompanyContext)
+  const { highlightedCompanies } = useContext(PublicCompanyContext);
 
   const [isVisible, setIsVisible] = useState(false);
   const [randomBanner, setRandomBanner] = useState<BannerItem | null>(null);
@@ -45,7 +45,7 @@ const PostBanner = () => {
   } = useBannerViewTracking(
     randomBanner?.id || "",
     trackingData,
-    TrackBannerView
+    TrackBannerView,
   );
 
   // Requisição dos banners quando o componente carrega
@@ -63,12 +63,12 @@ const PostBanner = () => {
 
   // Escolher o banner aleatório assim que os banners forem carregados
   useEffect(() => {
-    if (bannersNews?.data?.length > 0 && shouldDisplayBanner) {
+    if (bannersNews?.data?.length > 0 && shouldDisplayBanner && !randomBanner) {
       const randomIndex = Math.floor(Math.random() * bannersNews.data.length);
       setRandomBanner(bannersNews.data[randomIndex]);
       setIsVisible(true);
     }
-  }, [bannersNews, shouldDisplayBanner, pathname]);
+  }, [bannersNews, shouldDisplayBanner]);
 
   // Registrar view inicial quando banner for exibido
   useEffect(() => {
@@ -112,7 +112,7 @@ const PostBanner = () => {
             width={730}
             height={250}
             alt={randomBanner.name}
-            priority 
+            priority
             unoptimized
             className="bg-cover rounded-lg min-h-[110px] lg:min-h-[240px] max-h-[110px] lg:max-h-[240px]"
           />
